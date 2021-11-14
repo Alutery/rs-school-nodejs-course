@@ -1,7 +1,7 @@
 const {
     pipeline
 } = require('stream')
-// const getTransformStreams = require('./src/ciphers/getTransformStreams')
+const getTransformStreams = require('./src/ciphers/getTransformStreams')
 const {
     getReader
 } = require('./src/ioStreams/reader')
@@ -16,17 +16,17 @@ const {
     output
 } = getOptions()
 
-// let transformStreams
-// try {
-//     transformStreams = getTransformStreams(config)
-// } catch (e) {
-//     console.error('Error occurred:', e.message)
-//     process.exit(1)
-// }
+let transformStreams
+try {
+    transformStreams = getTransformStreams(config)
+} catch (e) {
+    console.error('Error occurred:', e.message)
+    process.exit(1)
+}
 
 pipeline(
     getReader(input),
-    // ...transformStreams,
+    ...transformStreams,
     getWriter(output),
     error => {
         if (error) {
