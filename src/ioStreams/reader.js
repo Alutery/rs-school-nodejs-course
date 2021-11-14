@@ -1,12 +1,11 @@
 const fs = require('fs')
 
-const handleError = () => {
-    console.error('Error occurred while reading input')
-}
-
 const getReader = (input) => {
     if (input) {
-        return fs.createReadStream(input).on('error', handleError)
+        if (!fs.existsSync(input)) {
+            throw new Error('Input file not exist')
+        }
+        return fs.createReadStream(input)
     } else {
         return process.stdin
     }

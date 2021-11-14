@@ -10,30 +10,57 @@ const {
 } = require('./src/ioStreams/writer')
 const getOptions = require('./src/utils/getOptions')
 
+const options = () => {
+    try {
+        return getOptions()
+    } catch (e) {
+        console.error('Error occurred while reading options:', e.message)
+        process.exit(1)
+    }
+}
 const {
     config,
     input,
     output
-} = getOptions()
+} = options()
 
-let transformStreams
-try {
-    transformStreams = getTransformStreams(config)
-} catch (e) {
-    console.error('Error occurred:', e.message)
-    process.exit(1)
+
+const transformStreams = () => {
+    try {
+        return getTransformStreams(config)
+    } catch (e) {
+        console.error('Error occurred while reading config:', e.message)
+        process.exit(1)
+    }
 }
 
+const reader = () => {
+    try {
+        return getReader(input)
+    } catch (e) {
+        console.error(e.message)
+        process.exit(1)
+    }
+}
+
+const writer = () => {
+    try {
+        return getWriter(output)
+    } catch (e) {
+        console.error(e.message)
+        process.exit(1)
+    }
+}
+
+
 pipeline(
-    getReader(input),
-    ...transformStreams,
-    getWriter(output),
+    reader(),
+    ...transformStreams(),
+    writer(),
     error => {
         if (error) {
             console.error(error.message)
             process.exit(1)
-        } else {
-            console.log('Finished!')
         }
     }
 )
