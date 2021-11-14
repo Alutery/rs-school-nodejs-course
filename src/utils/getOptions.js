@@ -7,11 +7,15 @@ const flags = {
 }
 
 const getOptionValue = (flags) => {
-    const flagIndexShort = options.indexOf(flags[0])
-    const flagIndexLong = options.indexOf(flags[1])
+    const flagIndexShort = options.filter(o => o === flags[0])
+    const flagIndexLong = options.filter(o => o === flags[1])
 
-    if (flagIndexShort !== -1) return options[flagIndexShort + 1]
-    if (flagIndexLong !== -1) return options[flagIndexLong + 1]
+    if (flagIndexShort.length + flagIndexLong.length > 1) {
+        throw Error(`Option more than 1 (${flags[1]})`)
+    }
+
+    if (flagIndexShort.length) return flagIndexShort[0]
+    if (flagIndexLong.length) return flagIndexLong[0]
 
     return null
 }
@@ -21,7 +25,7 @@ const getOptions = () => {
     if (config === null) {
         throw new Error('No config option')
     }
-    if (!/[CAR][01]*(-[CAR][01]*)*/.test(config)) {
+    if (!/[C0|C1|A|R0|R1](-[C0|C1|A|R0|R1])*/.test(config)) {
         throw new Error('Invalid config')
     }
 
