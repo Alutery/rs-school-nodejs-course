@@ -1,4 +1,6 @@
-# RS School Node.js Course
+# Ciphering CLI Tool
+
+RS School Node.js Course
 
 ## How to install
 
@@ -6,7 +8,7 @@ To install this application you must follow the following steps:
 
 1. Download it from this repository;
 2. Run the command line and go to the application folder;
-3. Enter the command `nom install` or `nom i` and wait for the dependency installation process to complete;
+3. Enter the command `npm install` or `npm i` and wait for the dependency installation process to complete;
 4. The application is ready to go.
 
 ---
@@ -35,7 +37,9 @@ Where options are command line parameters that determine the operation of the ap
 2.  **-i, --input**: a path to input file
 3.  **-o, --output**: a path to output file
 
-## Examples of usage🧮
+---
+
+## Examples of usage
 
 ```bash
 $ node cipher-cli -c "C1-C1-R0-A" -i "./input.txt" -o "./output.txt"
