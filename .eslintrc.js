@@ -9,7 +9,9 @@ module.exports = {
         ecmaVersion: 2018
     },
     'rules': {
-        indent: ['error', 4],
+        indent: ['error', 4, {
+            'SwitchCase': 1
+        }],
         quotes: ['error', 'single'],
         semi: ['error', 'never'],
         'object-curly-spacing': ['error', 'always'],
