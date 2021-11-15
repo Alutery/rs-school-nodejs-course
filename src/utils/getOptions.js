@@ -7,15 +7,18 @@ const flags = {
 }
 
 const getOptionValue = (flags) => {
-    const flagIndexShort = options.filter(o => o === flags[0])
-    const flagIndexLong = options.filter(o => o === flags[1])
+    const flagIndexesShort = options.filter(o => o === flags[0])
+    const flagIndexesLong = options.filter(o => o === flags[1])
 
-    if (flagIndexShort.length + flagIndexLong.length > 1) {
+    if (flagIndexesShort.length + flagIndexesLong.length > 1) {
         throw Error(`Option more than 1 (${flags[1]})`)
     }
 
-    if (flagIndexShort.length) return flagIndexShort[0]
-    if (flagIndexLong.length) return flagIndexLong[0]
+    const flagIndexShort = options.indexOf(flags[0])
+    const flagIndexLong = options.indexOf(flags[1])
+
+    if (flagIndexShort !== -1) return options[flagIndexShort + 1]
+    if (flagIndexLong !== -1) return options[flagIndexLong + 1]
 
     return null
 }
