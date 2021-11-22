@@ -1,0 +1,19 @@
+{
+  "name": "rs-school-nodejs-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cipher-cli.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alutery/rs-school-nodejs-course.git"
+  },
+  "author": "Aliya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alutery/rs-school-nodejs-course/issues"
+  },
+  "homepage": "https://github.com/Alutery/rs-school-nodejs-course#readme",
+  "devDependencies": {
+    "eslint": "^8.2.0"
+  }
+}
